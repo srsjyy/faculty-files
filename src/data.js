@@ -9359,7 +9359,7 @@ export const people = [
         url: "https://drive.google.com/drive/folders/1sHLHHyK3J2Nb3-CPIfO_-Qv2k0DyZ6Ub?usp=drive_link"
       }],
     diploma: [{
-      name: "BACHELOR OF SCIENCE IN INFORMATION TECHNOLOGY",
+      name: "BACHELOR OF SCIENCE IN COMPUTER SCIENCE",
       url: "https://drive.google.com/file/d/1mTI1v4nLevcHRYq-OnTHWJ7dSwbLrHum/view?usp=sharing"
     },],
     masters_diploma: null,
