@@ -104,7 +104,7 @@ function DevelopmentPlan({ development_plan }) {
                     {development_plan[key] &&
                     development_plan[key][year] &&
                     development_plan[key][year].length > 0 ? (
-                      <ul className="list-disc list-inside space-y-1">
+                      <ul className="list-disc list-outside pl-5 space-y-1">
                         {development_plan[key][year].map((item, index) => (
                           <li key={index}>{item}</li>
                         ))}

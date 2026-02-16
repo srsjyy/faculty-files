@@ -6,6 +6,8 @@ import {
   Network,
 } from "lucide-react";
 
+import AnimateInView from "../widgets/AnimateInView";
+
 const objectives = [
   {
     icon: GraduationCap,
@@ -31,17 +33,22 @@ const objectives = [
 
 export default function Objectives() {
   return (
-    <section id="dept-objectives" className="bg-white py-16 px-4 md:px-10">
+    <section id="dept-objectives" className="bg-white py-16 px-4 md:px-10 rounded-2xl">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-red-900 mb-12">
-         Department Objectives
-        </h2>
+
+        <AnimateInView duration={700}>
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-red-900 mb-12">
+          Department Objectives
+          </h2>
+        </AnimateInView>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {objectives.map((obj, idx) => {
             const Icon = obj.icon;
 
             return (
+            
+            <AnimateInView duration={700}>
               <div
                 key={idx}
                 className="bg-amber-100 border-l-4 border-red-800 p-6 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-1 transition-all"
@@ -58,6 +65,7 @@ export default function Objectives() {
                 </div>
                 <p className="text-gray-800 text-sm">{obj.title}</p>
               </div>
+            </AnimateInView>
             );
           })}
         </div>

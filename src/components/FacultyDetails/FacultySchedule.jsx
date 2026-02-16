@@ -5,6 +5,7 @@ function FacultySchedule({ schedule }) {
   const [currentScheduleDetails, setCurrentScheduleDetails] = useState(null);
   const [activeSemesterName, setActiveSemesterName] = useState("");
 
+  
   useEffect(() => {
     if (schedule && Array.isArray(schedule) && schedule.length > 0) {
       const latestSemester = schedule[schedule.length - 1];
@@ -14,7 +15,7 @@ function FacultySchedule({ schedule }) {
       setCurrentScheduleDetails(null);
       setActiveSemesterName("");
     }
-  }, [schedule]); 
+  }, [schedule]);
 
   const handleSemesterChange = (semester) => {
     setCurrentScheduleDetails(semester.details);
@@ -41,16 +42,17 @@ function FacultySchedule({ schedule }) {
       </h1>
 
       {/* Semester selection buttons */}
-      {schedule.length > 1 && ( 
+      {schedule.length > 1 && (
         <div className="flex flex-wrap justify-center gap-2 mb-4">
           {schedule.map((semester, index) => (
             <button
               key={index}
               onClick={() => handleSemesterChange(semester)}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 ease-in-out
-                ${activeSemesterName === semester.semesterName
-                  ? "bg-red-900 text-amber-50 shadow-md"
-                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                ${
+                  activeSemesterName === semester.semesterName
+                    ? "bg-red-900 text-amber-50 shadow-md"
+                    : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                 }`}
             >
               {semester.semesterName}
@@ -60,7 +62,8 @@ function FacultySchedule({ schedule }) {
       )}
 
       {/* Display the current semester's schedule */}
-      {currentScheduleDetails && Object.keys(currentScheduleDetails).length > 0 ? (
+      {currentScheduleDetails &&
+      Object.keys(currentScheduleDetails).length > 0 ? (
         <div className="overflow-x-auto">
           <h2 className="text-lg font-semibold text-red-800 mb-3 text-center">
             Schedule for {activeSemesterName}
@@ -80,7 +83,7 @@ function FacultySchedule({ schedule }) {
                 <th className="py-2 px-4 border border-gray-300 text-left text-gray-700">
                   Section
                 </th>
-                 <th className="py-2 px-4 border border-gray-300 text-left text-gray-700">
+                <th className="py-2 px-4 border border-gray-300 text-left text-gray-700">
                   Room
                 </th>
               </tr>
@@ -108,10 +111,10 @@ function FacultySchedule({ schedule }) {
                         {item.subject}
                       </td>
                       <td className="py-2 px-4 border border-gray-300 text-gray-900">
-                        {item.section}
+                        {item.section || "-"}
                       </td>
-                       <td className="py-2 px-4 border border-gray-300 text-gray-900">
-                        {item.room}
+                      <td className="py-2 px-4 border border-gray-300 text-gray-900">
+                        {item.room || "-"}
                       </td>
                     </tr>
                   ))
@@ -121,7 +124,7 @@ function FacultySchedule({ schedule }) {
                       {day}
                     </td>
                     <td
-                      colSpan="3"
+                      colSpan="4"
                       className="py-2 px-4 border border-gray-300 text-gray-600 italic"
                     >
                       No classes scheduled
@@ -132,8 +135,25 @@ function FacultySchedule({ schedule }) {
             </tbody>
           </table>
         </div>
+      ) : schedule.find(
+          (s) => s.semesterName === activeSemesterName && s.image
+        ) ? (
+        <div className="flex flex-col items-center">
+          <h2 className="text-lg font-semibold text-red-800 mb-3 text-center">
+            Schedule for {activeSemesterName}
+          </h2>
+          <img
+            src={
+              schedule.find((s) => s.semesterName === activeSemesterName).image
+            }
+            alt={`Faculty Schedule ${activeSemesterName}`}
+            className="rounded shadow max-w-full"
+          />
+        </div>
       ) : (
-        <p className="text-gray-600">No schedule details available for this semester.</p>
+        <p className="text-gray-600">
+          No schedule details available for this semester.
+        </p>
       )}
     </div>
   );

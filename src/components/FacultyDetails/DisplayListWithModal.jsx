@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import Modal from './Modal';
 
-function DisplayListWithModal({ title, items }) {
+// 1. Accept listClassName as a prop here
+function DisplayListWithModal({ title, items, listClassName }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   if (!Array.isArray(items) || items.length === 0) {
@@ -13,16 +14,16 @@ function DisplayListWithModal({ title, items }) {
 
   return (
     <div className="mt-4">
-      <h3 className="text-base font-semibold text-gray-800 mb-2">{title}:</h3>
-      {/* Initial view remains a list */}
-      <ul className="list-disc list-inside space-y-1">
+      <h3 className="text-base text-red-800 font-semibold mb-2">{title}:</h3>
+      {/* 2. Apply the dynamic className to the <ul> element */}
+      <ul className={listClassName}>
         {visibleItems.map((doc, index) => (
           <li key={index}>
             <a
               href={doc.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:underline hover:text-red-900"
+              className="text-base hover:underline hover:text-red-900"
             >
               {doc.name || `${title} ${index + 1}`}
             </a>
@@ -32,9 +33,9 @@ function DisplayListWithModal({ title, items }) {
       {hasMoreItems && (
         <button
           onClick={() => setIsModalOpen(true)}
-          className="text-sm text-red-800 hover:underline font-semibold mt-2"
+          className="text-sm text-red-900 hover:underline font-semibold mt-2"
         >
-          VIEW ALL
+          View All
         </button>
       )}
 
@@ -46,7 +47,7 @@ function DisplayListWithModal({ title, items }) {
         {/* Modal content is now a table with hoverable rows */}
         <div className="max-h-96 overflow-y-auto max-w-3xl">
           <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
+            <table className="min-w-full divide-y divide-y-gray-200">
               <thead className="bg-gray-50">
                 <tr>
                   <th

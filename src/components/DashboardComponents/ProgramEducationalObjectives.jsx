@@ -6,6 +6,8 @@ import {
   FileText,
 } from "lucide-react";
 
+import AnimateInView from "../widgets/AnimateInView";
+
 export default function ProgramEducationalObjectives() {
   const peos = [
     {
@@ -31,14 +33,20 @@ export default function ProgramEducationalObjectives() {
   ];
 
   return (
-    <section id="cs-objectives" className="bg-white py-16 px-4 md:px-10">
+    <section id="cs-objectives" className="bg-white py-16 px-4 md:px-10 rounded-2xl">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-red-900 mb-6">
-       Computer Science Program Educational Objectives <br /> (based on the program CMO)
-        </h2>
-        <p className="text-center text-gray-700 mb-10 max-w-3xl mx-auto">
-          To attain the objectives of the department, the program aims to produce graduates who can:
-        </p>
+
+        <AnimateInView duration={700}>
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-red-900 mb-6">
+        Computer Science Program Educational Objectives <br /> (based on the program CMO)
+          </h2>
+        </AnimateInView>
+
+        <AnimateInView duration={700}>
+          <p className="text-center text-gray-700 mb-10 max-w-3xl mx-auto">
+            To attain the objectives of the department, the program aims to produce graduates who can:
+          </p>
+        </AnimateInView>
 
         <div className="grid sm:grid-cols-2 gap-8">
           {peos.map((item, idx) => {
